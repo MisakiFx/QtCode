@@ -7,7 +7,7 @@ MyButton::MyButton(QWidget *parent) : QPushButton(parent)
 }
 void MyButton::mousePressEvent(QMouseEvent *e)
 {
-    if(e->button() == Qt::LeftButton)
+    if(e->button() == Qt::RightButton)
     {
         //接收事件，事件不会继续往下传递
         qDebug() << "按下的是左键";
