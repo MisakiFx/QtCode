@@ -47,3 +47,28 @@ void Widget::on_buttonRead_clicked()
         file.close();
     }
 }
+
+void Widget::on_buttonWrite_clicked()
+{
+    QString path = QFileDialog::getSaveFileName(this, "save", "../", "TXT(*.txt)");
+    if(!path.isEmpty())
+    {
+        QFile file;
+        file.setFileName(path);
+        //打开文件
+        bool isOk = file.open(QIODevice::WriteOnly);
+        if(isOk == true)
+        {
+            //获取编辑区内容
+            QString str = ui->textEdit->toPlainText();
+            //写文件
+            //默认都是UTF8
+            //file.write(str.toUtf8());
+            //file.write(str.toStdString().c_str());
+            //转换本地平台编码，windows是ansi编码
+            file.write(str.toLocal8Bit());
+        }
+        //关闭
+        file.close();
+    }
+}
