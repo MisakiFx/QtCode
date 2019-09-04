@@ -2,6 +2,10 @@
 #include "ui_widget.h"
 #include <QFile>
 #include <QFileDialog>//文件打开对话框
+#include <QFileInfo>//可以获得文件信息类
+#include <QDebug>
+#include <QDateTime>
+#include <QDataStream>//数据流以二进制方式操作
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -45,6 +49,12 @@ void Widget::on_buttonRead_clicked()
         }
         //别忘关闭文件
         file.close();
+        //获取文件信息
+        QFileInfo info(path);
+        qDebug() << "文件名：" << info.fileName();
+        qDebug() << "文件后缀：" << info.suffix();
+        qDebug() << "文件大小：" << info.size();
+        qDebug() << "创建时间：" << info.created().toString("yyyy-MM-dd hh:mm:ss");
     }
 }
 
