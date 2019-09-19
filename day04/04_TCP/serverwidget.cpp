@@ -3,7 +3,9 @@
 
 ServerWidget::ServerWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ServerWidget)
+    ui(new Ui::ServerWidget),
+    tcpSocket(nullptr),
+    tcpServer(nullptr)
 {
     ui->setupUi(this);
     //监听套接字，指定父对象让其自动回收空间
@@ -39,6 +41,10 @@ ServerWidget::~ServerWidget()
 
 void ServerWidget::on_buttonSend_clicked()
 {
+    if(tcpSocket == nullptr)
+    {
+        return;
+    }
     //获取编辑区内容
     QString str = ui->textEditWrite->toPlainText();
     //给对方发送数据
@@ -47,7 +53,12 @@ void ServerWidget::on_buttonSend_clicked()
 
 void ServerWidget::on_buttonClose_clicked()
 {
+    if(tcpSocket == nullptr)
+    {
+        return;
+    }
     //主动和客户端断开连接
     tcpSocket->disconnectFromHost();
     tcpSocket->close();
+    tcpSocket = nullptr;
 }
