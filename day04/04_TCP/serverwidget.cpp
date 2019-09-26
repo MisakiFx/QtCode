@@ -49,6 +49,7 @@ void ServerWidget::on_buttonSend_clicked()
     QString str = ui->textEditWrite->toPlainText();
     //给对方发送数据
     tcpSocket->write(str.toUtf8().data());
+    ui->textEditWrite->clear();
 }
 
 void ServerWidget::on_buttonClose_clicked()

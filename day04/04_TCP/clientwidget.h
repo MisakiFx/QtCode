@@ -19,6 +19,10 @@ public:
 private slots:
     void on_buttonConnect_clicked();
 
+    void on_buttonSend_clicked();
+
+    void on_buttonClose_clicked();
+
 private:
     Ui::ClientWidget *ui;
     QTcpSocket* tcpSocket;
