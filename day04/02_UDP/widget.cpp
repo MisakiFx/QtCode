@@ -7,7 +7,13 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
     udpSocket = new QUdpSocket(this);
-    udpSocket->bind(8000);
+    //udpSocket->bind(8000);
+    //限定绑定ipv4
+    udpSocket->bind(QHostAddress::AnyIPv4, 8888);
+    //加入某个组播
+    //主播地址是D类地址
+    udpSocket->joinMulticastGroup(QHostAddress("224.0.0.2"));
+    //udpSocket->leaveMulticastGroup(QHostAddress("224.0.0.2"));//离开
     setWindowTitle("Server port 8000");
     connect(udpSocket, &QUdpSocket::readyRead, this, &deelMessage);
 }
