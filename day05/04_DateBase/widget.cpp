@@ -11,10 +11,10 @@ Widget::Widget(QWidget *parent) :
     qDebug() << QSqlDatabase::drivers();
     QSqlDatabase db =  QSqlDatabase::addDatabase("QMYSQL");
     //连接数据库
-    db.setHostName("127.0.0.1");//数据库服务器IP
+    db.setHostName("182.92.67.216");//数据库服务器IP
     db.setUserName("root");//数据库用户名
     db.setPassword("1");
-    //db.setPort(3306);
+    db.setPort(3306);
     db.setDatabaseName("info");//使用哪个数据库
     //打开数据库
     if(!db.open())
