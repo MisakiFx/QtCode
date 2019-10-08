@@ -6,41 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>615</width>
+    <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>80</y>
-     <width>121</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QTableView" name="tableView">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>80</y>
-     <width>171</width>
-     <height>16</height>
+     <y>20</y>
+     <width>581</width>
+     <height>291</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>380</y>
+     <width>93</width>
+     <height>28</height>
     </rect>
    </property>
    <property name="text">
-    <string>请输入要删除的名字：</string>
+    <string>增加</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="buttonDel">
+  <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>180</y>
+     <x>210</x>
+     <y>380</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -49,30 +49,30 @@
     <string>删除</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="buttonSure">
+  <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>180</y>
+     <x>370</x>
+     <y>380</y>
      <width>93</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text">
-    <string>确当删除</string>
+    <string>确定删除</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="buttonCancel">
+  <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>180</y>
+     <x>510</x>
+     <y>380</y>
      <width>93</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text">
-    <string>取消</string>
+    <string>取消删除</string>
    </property>
   </widget>
  </widget>
