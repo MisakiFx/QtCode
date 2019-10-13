@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QSqlTableModel>
 
 namespace Ui {
 class Widget;
@@ -15,8 +16,16 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
 
+private slots:
+    void on_buttonAdd_clicked();
+
+    void on_buttonSure_clicked();
+
+    void on_buttonCancel_clicked();
+
 private:
     Ui::Widget *ui;
+    QSqlTableModel* model;
 };
 
 #endif // WIDGET_H

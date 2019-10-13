@@ -1,14 +1,65 @@
 #include "widget.h"
 #include "ui_widget.h"
-
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QMessageBox>
+#include <QDebug>
+#include <QVariantList>
+#include <QSqlTableModel>
+#include <QSqlRecord>
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("127.0.0.1");
+    db.setUserName("root");
+    db.setPassword("1");
+    db.setDatabaseName("info");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "错误", db.lastError().text());
+        return;
+    }
+    //设置模型
+    model = new QSqlTableModel(this);
+    model->setTable("student");//指定使用的表
+
+    //把model设置到view里面
+    ui->tableView->setModel(model);
+
+    //显示model中的数据
+    model->select();
+    model->setHeaderData(0, Qt::Horizontal, "学号");
+    //设置model的编辑模式，手动提交修改
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    //数据库不允许修改
+    //ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
 }
 
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::on_buttonAdd_clicked()
+{
+    //添加空记录
+    QSqlRecord record = model->record();//获取空记录
+    int row = model->rowCount();//获取行号
+    model->insertRecord(row, record);
+}
+
+void Widget::on_buttonSure_clicked()
+{
+    model->submitAll();//提交
+}
+
+void Widget::on_buttonCancel_clicked()
+{
+    model->revertAll();//取消所有动作
+    //model->submitAll();
 }
