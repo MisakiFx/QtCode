@@ -23,6 +23,10 @@ private slots:
 
     void on_buttonCancel_clicked();
 
+    void on_buttonDel_clicked();
+
+    void on_buttonFind_clicked();
+
 private:
     Ui::Widget *ui;
     QSqlTableModel* model;

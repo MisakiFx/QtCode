@@ -61,5 +61,33 @@ void Widget::on_buttonSure_clicked()
 void Widget::on_buttonCancel_clicked()
 {
     model->revertAll();//取消所有动作
-    //model->submitAll();
+    model->submitAll();//刷新模型
+}
+
+void Widget::on_buttonDel_clicked()
+{
+    //取出选中的模型
+    QItemSelectionModel* sModel = ui->tableView->selectionModel();//获取选中的模型
+    //取出模型中的索引
+    QModelIndexList list = sModel->selectedRows();
+    //删除所有选中的行
+    for(int i = 0; i < list.size(); i++)
+    {
+        model->removeRow(list[i].row());
+    }
+}
+
+void Widget::on_buttonFind_clicked()
+{
+    QString name = ui->lineEdit->text();
+    if(name == "")
+    {
+        //model->setFilter("name = 'Misaki'");
+        model->setTable("student");
+        model->select();
+        return;
+    }
+    QString str = QString("name = '%1'").arg(name);
+    model->setFilter(str);
+    model->select();
 }
