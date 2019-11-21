@@ -1,7 +1,9 @@
 #include "mythread.h"
 #include <QThread>
 #include <QDebug>
-MyThread::MyThread(QObject *parent) : QObject(parent), isStop(false)
+MyThread::MyThread(QObject *parent)
+    : QObject(parent)
+    , isStop(false)
 {
 
 }
@@ -9,6 +11,7 @@ MyThread::MyThread(QObject *parent) : QObject(parent), isStop(false)
 void MyThread::myTimeout()
 {
     //线程处理函数内部不允许操作图形界面
+    qDebug() << isStop;
     while(isStop == false)
     {
         QThread::sleep(1);
